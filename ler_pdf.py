@@ -1,7 +1,0 @@
-from langchain_community.document_loaders import PyPDFLoader
-
-loader = PyPDFLoader("documentos/FAQ_Completo_5_Paginas_EcoStream.pdf")
-docs = loader.load()
-for i, doc in enumerate(docs):
-    print(f"\n--- Pagina {i+1} ---")
-    print(doc.page_content[:300])

@@ -25,10 +25,12 @@ O sistema conta com uma interface de chat interativa feita em [Streamlit](https:
 ├── .env                 # (Não versionado) Sua chave da API da OpenAI
 ├── .gitignore           # Ignora arquivos desnecessários e chaves da API
 ├── app.py               # Interface Gráfica Streamlit do Chatbot
-├── create_db.py         # Script para ler PDFs, gerar chunks e criar a base vetorial
-├── main.py              # Lógica principal de recuperação de contexto (RAG) e chamadas ao LLM
 ├── requirements.txt     # Dependências do projeto
 ├── documentos/          # Pasta onde ficam os PDFs de origem (Ex: FAQ EcoStream)
+├── src/                 # Scripts auxiliares e backend
+│   ├── main.py          # Lógica principal de recuperação de contexto (RAG)
+│   ├── create_db.py     # Script para criar a base vetorial
+│   └── ...              # Testes e funções
 └── faqs_db/             # Pasta gerada pelo ChromaDB com os vetores de dados
     └── metadatos/
         └── info.txt     # Arquivo de configuração de template do Prompt
@@ -66,7 +68,7 @@ OPENAI_API_KEY="sk-SuaChaveAqui"
 ### 5. (Opcional) Recriar a Base de Conhecimento
 Caso você adicione novos PDFs na pasta `documentos/`, será necessário recriar o banco de dados vetorial. Antes disso, apague a pasta `faqs_db` (lembre-se de fazer backup do `info.txt`):
 ```bash
-python create_db.py
+python src/create_db.py
 ```
 
 ### 6. Rodar a Aplicação

@@ -1,5 +1,5 @@
 import streamlit as st
-from main import carregar_banco_dados, buscar_contexto, gerar_resposta
+from src.main import carregar_banco_dados, buscar_contexto, gerar_resposta
 
 # Configuração da página do Streamlit
 st.set_page_config(page_title="Assistente Virtual da ecostream", page_icon="📚")

@@ -3,14 +3,18 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
 from dotenv import load_dotenv
+import os
+
 load_dotenv()
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 
 def carregar_documentos():
     """Carrega os documentos do diretório 'documentos'"""
     try:
-        diretorio_arquivos = "documentos"
+        diretorio_arquivos = os.path.join(BASE_DIR, "documentos")
         carregador = PyPDFDirectoryLoader(diretorio_arquivos)
         documentos = carregador.load()
         print(f"Documentos carregados: {len(documentos)}")
@@ -44,7 +48,7 @@ def vetorizar_documentos(chunks):
         db = Chroma.from_documents(
             documents=chunks,
             embedding=OpenAIEmbeddings(),
-            persist_directory="faqs_db"
+            persist_directory=os.path.join(BASE_DIR, "faqs_db")
             
         )
         print("Base de dados criada com sucesso!")

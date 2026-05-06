@@ -6,7 +6,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-PATH = "faqs_db"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PATH = os.path.join(BASE_DIR, "faqs_db")
 db = Chroma(
     persist_directory=PATH, 
     embedding_function=OpenAIEmbeddings()

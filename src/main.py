@@ -8,11 +8,12 @@ from dotenv import load_dotenv
 # Carrega as variáveis de ambiente
 load_dotenv()
 
-PATH = "faqs_db"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PATH = os.path.join(BASE_DIR, "faqs_db")
 
 def carregar_prompt():
     """Carrega o template de prompt a partir de um arquivo de texto."""
-    caminho_prompt = os.path.join("faqs_db", "metadatos", "info.txt")
+    caminho_prompt = os.path.join(PATH, "metadatos", "info.txt")
     try:
         with open(caminho_prompt, "r", encoding="utf-8") as f:
             return f.read().strip()

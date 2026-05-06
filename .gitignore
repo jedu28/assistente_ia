@@ -1,0 +1,20 @@
+# Ambiente Virtual e Variáveis de Ambiente
+venv/
+env/
+.env
+
+# Cache do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Mac OS
+.DS_Store
+
+# IDEs e Editores
+.vscode/
+.idea/
+
+# Observação: a pasta faqs_db (onde está o banco de dados e o info.txt) 
+# NÃO está ignorada aqui porque o Streamlit Cloud vai precisar dela!

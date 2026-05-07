@@ -19,6 +19,32 @@ O sistema conta com uma interface de chat interativa feita em [Streamlit](https:
 
 ---
 
+## 🏗 Arquitetura do Sistema (Fluxo RAG)
+
+```mermaid
+graph TD
+    A[Usuário] -->|Digita Pergunta| B(Interface Web - Streamlit)
+    
+    subgraph Pipeline de Ingestão
+    D[PDFs - Documentos EcoStream] -->|Leitura e Divisão| E(src/create_db.py)
+    E -->|Geração de Embeddings| F[(ChromaDB - faqs_db)]
+    end
+    
+    subgraph Pipeline de Inferência
+    B -->|Envia Pergunta| C(Core RAG - src/main.py)
+    C -->|Busca Semântica| F
+    F -->|Retorna Contexto Relevante| C
+    G[info.txt - Prompt System] --> C
+    C -->|Prompt + Contexto + Pergunta| H(LLM - OpenAI gpt-4o-mini)
+    H -->|Resposta Gerada| C
+    end
+    
+    C -->|Retorna Resposta| B
+    B -->|Exibe na Tela| A
+```
+
+---
+
 ## 📂 Estrutura do Projeto
 
 ```text
